@@ -1,27 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "";//usuario
-$password = "";//senha
-$dbname = "av1_3daw";
-
-// Create connection
-try {
-	$conn = new mysqli($servername, $username, $password, $dbname);
-}catch(PDOException $erro){
-	echo "Erro na conexão:" . $erro->getMessage();
-}
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ require_once('conexao.php');
+ $conn = createCon();
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$btn = $_POST["btn"];
 	$nome = $_POST["nome"];
 	$mat = $_POST["matricula"];
 	$cpf = $_POST["cpf"];
-
 	
 switch ($btn) {
 	case "cadastrar":
@@ -62,7 +46,7 @@ switch ($btn) {
 		$sql = "DELETE FROM alunos where matricula = " . $mat;
 	
 		if ($conn->query($sql) === TRUE) {
-			echo "registro alterado  " ;
+			echo "registro alterado " ;
 		} else {
 			echo "Erro ao alterar o aluno" ;
 		}
@@ -89,5 +73,5 @@ switch ($btn) {
 }
 echo "<br><hr/><a href='index.html'>HOME</a>";	
 
-$conn->close();
+closeCon($conn);
 ?>
