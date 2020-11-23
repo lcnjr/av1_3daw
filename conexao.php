@@ -1,9 +1,9 @@
 <?php
 function createCon(){
         $servername = "localhost";
-        $username = "root";
-        $password = "242526";
-        $dbname = "av1_3daw";
+        $username = "";
+        $password = "";
+        $dbname = "";
 
         // Create connection
         try {
